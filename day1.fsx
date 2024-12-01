@@ -4,8 +4,7 @@ let stage1 =
     File.ReadAllLines "inputs/day1"
     |> Array.map (fun line -> line.Split("   ") |> Array.map int)
     |> Array.transpose
-    |> Array.map (Array.sort)
-    |> fun arr -> (arr.[0], arr.[1])
+    |> fun arr -> (Array.sort arr.[0], Array.sort arr.[1])
 
 let answer1 =
     stage1
