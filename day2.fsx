@@ -6,7 +6,7 @@ let stage1 = File.ReadAllLines "inputs/day2" |> Array.map (fun line -> line.Spli
 
 let answer1 =
     stage1
-    |> Array.collect (fun row -> [| row; Array.rev row |]) // Include row and its reverse
+    |> Array.collect (fun row -> [| row; Array.rev row |])
     |> Array.filter isOrdered
     |> Array.length
 
