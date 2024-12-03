@@ -8,4 +8,4 @@ let answer1Matches = Regex.Matches(stage1, instructionPattern)
 let answer2Matches = Regex.Matches(cleanedInput, instructionPattern)
 
 printfn "Answer1: %d" <| (answer1Matches |> Seq.map (fun m -> int m.Groups.[1].Value * int m.Groups.[2].Value )|> Seq.sum)
-printfn "Answer1: %d" <| (answer2Matches |> Seq.map (fun m -> int m.Groups.[1].Value * int m.Groups.[2].Value )|> Seq.sum)
+printfn "Answer2: %d" <| (answer2Matches |> Seq.map (fun m -> int m.Groups.[1].Value * int m.Groups.[2].Value )|> Seq.sum)
