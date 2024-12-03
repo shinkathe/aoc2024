@@ -2,10 +2,10 @@ open System.IO
 open System.Text.RegularExpressions
 
 let stage1 = File.ReadAllText "inputs/day3"
-let pattern = @"do\(\)|don't\(\)|mul\((\d+),(\d+)\)"
-let matches = Regex(pattern).Matches(stage1)
 
-let findInstructions skip =
+let findInstructions skip input =
+    let pattern = @"do\(\)|don't\(\)|mul\((\d+),(\d+)\)"
+    let matches = Regex(pattern).Matches(input)
     let mutable isEnabled = true
     let mutable enabledMulInstructions = []
     for m in matches do
@@ -20,5 +20,5 @@ let findInstructions skip =
         | _ -> ()
     enabledMulInstructions
 
-printfn "Answer 1: %d" (findInstructions true |> List.sumBy (fun (n1, n2) -> n1 * n2))
-printfn "Answer 2: %d" (findInstructions false |> List.sumBy (fun (n1, n2) -> n1 * n2))
+printfn "Answer 1: %d" (findInstructions true stage1 |> List.sumBy (fun (n1, n2) -> n1 * n2))
+printfn "Answer 2: %d" (findInstructions false stage1 |> List.sumBy (fun (n1, n2) -> n1 * n2))
