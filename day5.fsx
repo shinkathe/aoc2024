@@ -1,4 +1,5 @@
 open System
+let uncurry f (x, y) = f x y
 
 let input = IO.File.ReadAllText "inputs/day5" |> _.Split("\n\n")
 let orderingRules = input |> Array.head |> _.Split("\n") |> Array.map (fun line -> line.Split('|') |> fun p -> int p[0], int p[1])
@@ -17,8 +18,5 @@ let rec swap (a:int[]) rules =
 
 let swappedLines = lines |> Array.map (fun line -> (line, swap line orderingRules))
 
-let answer1 = swappedLines |> Array.filter (fun (original, swapped) -> original = swapped) |> Array.map (fst >> getMiddleElement) |> Array.sum
-let answer2 = swappedLines |> Array.filter (fun (original, swapped) -> original <> swapped) |> Array.map (snd >> getMiddleElement) |> Array.sum
-
-printfn "Answer 1: %A" answer1
-printfn "Answer 2: %A" answer2
+swappedLines |> Array.filter (uncurry (=)) |> Array.map (fst >> getMiddleElement) |> Array.sum |> printfn "Answer 1: %A"
+swappedLines |> Array.filter (uncurry (<>)) |> Array.map (snd >> getMiddleElement) |> Array.sum |> printfn "Answer 2: %A"
